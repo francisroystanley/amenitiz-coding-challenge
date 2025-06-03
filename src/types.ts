@@ -10,6 +10,7 @@ type UserProfile = {
   verified?: boolean;
   is_streamer?: boolean;
   joined: number;
+  last_online: number;
 };
 
 export type { UserProfile };

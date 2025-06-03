@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Avatar, Badge, ErrorMessage, Loading } from "../components";
+import { Avatar, Badge, ErrorMessage, LastSeenClock, Loading } from "../components";
 import { fetchProfile } from "../services/api";
 import type { UserProfile } from "../types";
 import { formatDate, titleCase } from "../util";
@@ -50,6 +50,7 @@ const ProfilePage = () => {
 
     const displayName = profile.name || profile.username;
     const joinedDate = formatDate(profile.joined * 1000);
+    const lastOnline = profile.last_online * 1000;
 
     return (
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-2xl mx-auto">
@@ -81,6 +82,11 @@ const ProfilePage = () => {
             <div className="border-l-4 border-amber-500 pl-3">
               <p className="text-sm text-gray-500">Joined</p>
               <p className="text-lg font-semibold">{joinedDate}</p>
+            </div>
+
+            <div className="border-l-4 border-green-500 pl-3 mt-4">
+              <p className="text-sm text-gray-500">Time Since Last Online</p>
+              <LastSeenClock lastOnline={lastOnline} />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
