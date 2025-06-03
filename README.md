@@ -1,54 +1,15 @@
-# React + TypeScript + Vite
+# Amenitiz Coding Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sub-optimal Compromises
 
-Currently, two official plugins are available:
+The following compromises were made to complete the task within the given constraints:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Local Component State**: Using React's useState for state management works for this scale, but wouldn't be optimal for larger applications where a more robust state management solution (Redux, Context API with reducers, Zustand, etc.) would be preferable.
 
-## Expanding the ESLint configuration
+- **No Data Caching**: The application has no caching strategy, potentially leading to redundant API calls when users navigate between pages or refresh.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Client-side Filtering**: Searching is implemented entirely on the client side, which doesn't scale well for large datasets. A server-side search implementation would be more efficient.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **No Virtualization**: For long lists, the application doesn't implement virtualization, which could cause performance issues with large datasets.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+These compromises were accepted to deliver a functioning application within the scope of the challenge, but would need to be addressed in a production environment.
