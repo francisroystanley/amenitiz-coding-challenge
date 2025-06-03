@@ -5,10 +5,11 @@ import Loading from "./Loading";
 type Props = {
   users: UserProfile[];
   isLoading: boolean;
+  isLoadingMore?: boolean;
 };
 
-const ListGrid = ({ users, isLoading }: Props) => {
-  if (isLoading) {
+const ListGrid = ({ users, isLoading, isLoadingMore }: Props) => {
+  if (isLoading && !users.length) {
     return <Loading />;
   }
 
@@ -21,11 +22,19 @@ const ListGrid = ({ users, isLoading }: Props) => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {users.map(user => (
-        <UserCard key={user.username} user={user} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {users.map(user => (
+          <UserCard key={user.username} user={user} />
+        ))}
+      </div>
+
+      {isLoadingMore && (
+        <div className="mt-8 flex justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      )}
+    </>
   );
 };
 
