@@ -1,6 +1,6 @@
 import { type UserProfile } from "../types";
-import UserCard from "./UserCard";
 import Loading from "./Loading";
+import UserCard from "./UserCard";
 
 type Props = {
   users: UserProfile[];

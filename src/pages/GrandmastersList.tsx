@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import ErrorMessage from "../components/ErrorMessage";
-import ListGrid from "../components/ListGrid";
+import { ErrorMessage, ListGrid } from "../components";
 import { fetchGrandmasters } from "../services/api";
 import type { UserProfile } from "../types";
 

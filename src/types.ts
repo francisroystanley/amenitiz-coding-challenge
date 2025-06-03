@@ -7,6 +7,9 @@ type UserProfile = {
   fide?: number;
   status?: string;
   followers?: number;
+  verified?: boolean;
+  is_streamer?: boolean;
+  joined: number;
 };
 
 export type { UserProfile };
